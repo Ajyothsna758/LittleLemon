@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from restaurant import views
+
+# without app urls directly include here
+# router= DefaultRouter()
+# router.register(r'tables', views.BookingView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("restaurant/", include("restaurant.urls")),
-    #path("api/", include("apiapp.urls")),
+    #path("restaurant/bookings/", include(router.urls))
 ]
