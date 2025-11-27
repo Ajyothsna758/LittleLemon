@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Menu
+from .models import Menu, Booking
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, MenuSerializer, Bookingserializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -45,8 +45,23 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class=UserSerializer
     authentication_classes=[TokenAuthentication, SessionAuthentication]
     permission_classes=[IsAuthenticated]
+
+# Menu API
+#using generic views
+class MenuItemView(generics.ListCreateAPIView):
+    queryset= Menu.objects.all()
+    serializer_class=MenuSerializer  
     
-    
+class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Menu.objects.all()
+    serializer_class=MenuSerializer   
+
+# Booking API
+# using viewset 
+class BookingView(viewsets.ModelViewSet):
+    queryset= Booking.objects.all()
+    serializer_class=Bookingserializer
+    permission_classes=[IsAuthenticated]
             
          
   
