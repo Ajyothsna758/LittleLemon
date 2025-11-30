@@ -50,11 +50,13 @@ class UserViewSet(viewsets.ModelViewSet):
 #using generic views
 class MenuItemView(generics.ListCreateAPIView):
     queryset= Menu.objects.all()
-    serializer_class=MenuSerializer  
+    serializer_class=MenuSerializer 
+    permission_classes=[IsAuthenticated] 
     
 class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Menu.objects.all()
-    serializer_class=MenuSerializer   
+    serializer_class=MenuSerializer 
+    permission_classes=[IsAuthenticated]  
 
 # Booking API
 # using viewset 
