@@ -10,7 +10,7 @@ urlpatterns=[
     path("", views.index, name="home"),
     path("hello/", views.hello),
     path("users/", views.userView),
-    path("menu/", views.MenuItemView.as_view()),
+    path("menu/", views.MenuItemView.as_view(), name="menu"),
     path("menu/<int:pk>/", views.SingleMenuItemView.as_view()),
 ]
 urlpatterns+= router.urls
